@@ -64,13 +64,14 @@ WHERE
  -- One way to check if something follows a particular pattern is to use a regular expression.
  -- In this case we use the regular expression for a timestamp format to check if the column follows that pattern.
  -- The is_timestamp column demonstrates that this column is a valid timestamp column
-SELECT
+ SELECT
  ActivityDate,
  REGEXP_CONTAINS(STRING(ActivityDate), TIMESTAMP_REGEX) AS is_timestamp
-FROM
+ FROM
  data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
-LIMIT
+ LIMIT
  20;
+ 
 -- To quickly check if all columns follow the timestamp pattern we can take the minimum value of the boolean expression across the entire table
 SELECT
  CASE
@@ -81,6 +82,110 @@ END
  AS valid_test
 FROM
  data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity;
+
+ -- Say we want to do an analysis based upon daily data, this could help us to find tables that might be at the day level
+ SELECT
+ DISTINCT table_name
+ FROM
+ `data-analysis-portfolio-407018.FitBit_Dataset.INFORMATION_SCHEMA.COLUMNS`
+ WHERE
+ REGEXP_CONTAINS(LOWER(table_name),"day|daily");
+
+ -- Look at the columns that are shared among the tables
+ SELECT
+ column_name,
+ data_type,
+ COUNT(table_name) AS table_count
+ FROM
+ `data-analysis-portfolio-407018.FitBit_Dataset.INFORMATION_SCHEMA.COLUMNS`
+ WHERE
+ REGEXP_CONTAINS(LOWER(table_name),"day|daily")
+ GROUP BY
+ 1,
+ 2;
+
+-- Check if the data types align between tables
+SELECT
+ column_name,
+ table_name,
+ data_type
+FROM
+ `data-analysis-portfolio-407018.FitBit_Dataset.INFORMATION_SCHEMA.COLUMNS`
+WHERE
+ REGEXP_CONTAINS(LOWER(table_name),"day|daily")
+ AND column_name IN (
+ SELECT
+   column_name
+ FROM
+   `data-analysis-portfolio-407018.FitBit_Dataset.INFORMATION_SCHEMA.COLUMNS`
+ WHERE
+   REGEXP_CONTAINS(LOWER(table_name),"day|daily")
+ GROUP BY
+   1
+ HAVING
+   COUNT(table_name) >=2)
+ORDER BY
+ 1;
+
+SELECT
+ A.Id,
+ A.Calories,
+ * EXCEPT(Id,
+   Calories,
+   ActivityDay,
+   SleepDay,
+   SedentaryMinutes,
+   LightlyActiveMinutes,
+   FairlyActiveMinutes,
+   VeryActiveMinutes,
+   SedentaryActiveDistance,
+   LightActiveDistance,
+   ModeratelyActiveDistance,
+   VeryActiveDistance),
+ I.SedentaryMinutes,
+ I.LightlyActiveMinutes,
+ I.FairlyActiveMinutes,
+ I.VeryActiveMinutes,
+ I.SedentaryActiveDistance,
+ I.LightActiveDistance,
+ I.ModeratelyActiveDistance,
+ I.VeryActiveDistance
+FROM
+ `data_analytics_cert.fitbit.dailyActivity_merged` A
+LEFT JOIN
+ `data_analytics_cert.fitbit.dailyCalories_merged` C
+ON
+ A.Id = C.Id
+ AND A.ActivityDate=C.ActivityDay
+ AND A.Calories = C.Calories
+LEFT JOIN
+ `data_analytics_cert.fitbit.dailyIntensities_merged` I
+ON
+ A.Id = I.Id
+ AND A.ActivityDate=I.ActivityDay
+ AND A.FairlyActiveMinutes = I.FairlyActiveMinutes
+ AND A.LightActiveDistance = I.LightActiveDistance
+ AND A.LightlyActiveMinutes = I.LightlyActiveMinutes
+ AND A.ModeratelyActiveDistance = I.ModeratelyActiveDistance
+ AND A.SedentaryActiveDistance = I.SedentaryActiveDistance
+ AND A.SedentaryMinutes = I.SedentaryMinutes
+ AND A.VeryActiveDistance = I.VeryActiveDistance
+ AND A.VeryActiveMinutes = I.VeryActiveMinutes
+LEFT JOIN
+ `data_analytics_cert.fitbit.dailySteps_merged` S
+ON
+ A.Id = S.Id
+ AND A.ActivityDate=S.ActivityDay
+LEFT JOIN
+ `data_analytics_cert.fitbit.sleepDay_merged` Sl
+ON
+ A.Id = Sl.Id
+ AND A.ActivityDate=Sl.SleepDay;
+
+-- Sleep related product could be a possibility -> check to see if/how people sleep during the day
+-- Assuming a nap is any time someone goes to sleep and wakes up in the same day
+
+
 
 
 
