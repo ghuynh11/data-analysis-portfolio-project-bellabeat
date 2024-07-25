@@ -59,3 +59,34 @@ WHERE
  data_type IN ("TIMESTAMP",
    "DATETIME",
    "DATE");
+   
+ -- In the dailyActivity_merged table we saw that there is a column called ActivityDate, let's check to see what it looks like
+ -- One way to check if something follows a particular pattern is to use a regular expression.
+ -- In this case we use the regular expression for a timestamp format to check if the column follows that pattern.
+ -- The is_timestamp column demonstrates that this column is a valid timestamp column
+SELECT
+ ActivityDate,
+ REGEXP_CONTAINS(STRING(ActivityDate), TIMESTAMP_REGEX) AS is_timestamp
+FROM
+ data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
+LIMIT
+ 20;
+-- To quickly check if all columns follow the timestamp pattern we can take the minimum value of the boolean expression across the entire table
+SELECT
+ CASE
+   WHEN MIN(REGEXP_CONTAINS(STRING(ActivityDate), TIMESTAMP_REGEX)) = TRUE THEN "Valid"
+ ELSE
+ "Not Valid"
+END
+ AS valid_test
+FROM
+ data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity;
+
+
+
+
+ 
+
+
+
+ 
