@@ -31,6 +31,7 @@ FROM
  data-analysis-portfolio-407018.FitBit_Dataset.INFORMATION_SCHEMA.COLUMNS
 GROUP BY
  1;
+-- -> The result shows that Id and ActivityDay columns are shared accross most tables
 
 -- Check if the Id column is available in every table
 SELECT
@@ -47,6 +48,7 @@ GROUP BY
  1
 ORDER BY
  1 ASC;
+ -- -> Id column is available in every table
 
 -- Check for the column names of the type DATETIME, TIMESTAMP, or DATE
 SELECT
@@ -60,9 +62,8 @@ WHERE
    "DATETIME",
    "DATE");
    
- -- In the dailyActivity_merged table we saw that there is a column called ActivityDate, let's check to see what it looks like
- -- One way to check if something follows a particular pattern is to use a regular expression.
- -- In this case we use the regular expression for a timestamp format to check if the column follows that pattern.
+ -- In the dailyActivity_merged table we saw that there is a column called ActivityDay
+ -- Use a regular expression for a timestamp format to check if the column ActivityDay follows that pattern
  -- The is_timestamp column demonstrates that this column is a valid timestamp column
  SELECT
  ActivityDate,
@@ -71,8 +72,9 @@ WHERE
  data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
  LIMIT
  20;
+ -- -> The result shows the ActivityDay column has Date format
  
--- To quickly check if all columns follow the timestamp pattern we can take the minimum value of the boolean expression across the entire table
+-- To quickly check if all columns follow the timestamp pattern, take the minimum value of the boolean expression across the entire table
 SELECT
  CASE
    WHEN MIN(REGEXP_CONTAINS(STRING(ActivityDate), TIMESTAMP_REGEX)) = TRUE THEN "Valid"
@@ -82,16 +84,18 @@ END
  AS valid_test
 FROM
  data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity;
+ -- -> All columns don't show the timestamp pattern
 
- -- Say we want to do an analysis based upon daily data, this could help us to find tables that might be at the day level
+ -- Find tables which are at the day level to do analysis based on daily data
  SELECT
  DISTINCT table_name
  FROM
  `data-analysis-portfolio-407018.FitBit_Dataset.INFORMATION_SCHEMA.COLUMNS`
  WHERE
  REGEXP_CONTAINS(LOWER(table_name),"day|daily");
+ -- -> The tables which have day level are: DailyIntensities, DailySteps, DailyActivity, DailyCalories, SleepDay
 
- -- Look at the columns that are shared among the tables
+ -- Look at the columns that are shared among these tables which have day level
  SELECT
  column_name,
  data_type,
@@ -103,6 +107,7 @@ FROM
  GROUP BY
  1,
  2;
+ -- -> Id and ActivityDay columns are shared accross most tables
 
 -- Check if the data types align between tables
 SELECT
@@ -126,7 +131,9 @@ WHERE
    COUNT(table_name) >=2)
 ORDER BY
  1;
+ -- -> The data types are align between these tables
 
+-- Join tables which have day level
 SELECT
  A.Id,
  A.Calories,
@@ -151,15 +158,15 @@ SELECT
  I.ModeratelyActiveDistance,
  I.VeryActiveDistance
 FROM
- `data_analytics_cert.fitbit.dailyActivity_merged` A
+ `data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity` A
 LEFT JOIN
- `data_analytics_cert.fitbit.dailyCalories_merged` C
+ `data-analysis-portfolio-407018.FitBit_Dataset.DailyCalories` C
 ON
  A.Id = C.Id
  AND A.ActivityDate=C.ActivityDay
  AND A.Calories = C.Calories
 LEFT JOIN
- `data_analytics_cert.fitbit.dailyIntensities_merged` I
+ `data-analysis-portfolio-407018.FitBit_Dataset.DailyIntensities` I
 ON
  A.Id = I.Id
  AND A.ActivityDate=I.ActivityDay
@@ -172,18 +179,53 @@ ON
  AND A.VeryActiveDistance = I.VeryActiveDistance
  AND A.VeryActiveMinutes = I.VeryActiveMinutes
 LEFT JOIN
- `data_analytics_cert.fitbit.dailySteps_merged` S
+ `data-analysis-portfolio-407018.FitBit_Dataset.DailySteps` S
 ON
  A.Id = S.Id
  AND A.ActivityDate=S.ActivityDay
 LEFT JOIN
- `data_analytics_cert.fitbit.sleepDay_merged` Sl
+ `data-analysis-portfolio-407018.FitBit_Dataset.SleepDay` Sl
 ON
  A.Id = Sl.Id
  AND A.ActivityDate=Sl.SleepDay;
 
+-- FURTHER ANALYSIS ON TABLES WHICH ARE AT DAY LEVEL
+
+
 -- Sleep related product could be a possibility -> check to see if/how people sleep during the day
 -- Assuming a nap is any time someone goes to sleep and wakes up in the same day
+SELECT
+ Id,
+ sleep_start AS sleep_date,
+ COUNT(logId) AS number_naps,
+ time_sleeping
+FROM (
+ SELECT
+   Id,
+   logId,
+   MIN(date) AS sleep_start,
+   MAX(date) AS sleep_end,
+   TIME_DIFF(MAX(time), MIN(time), HOUR) AS time_sleeping
+ FROM (
+   SELECT
+   *,
+   PARSE_TIME('%H:%M:%S', LEFT(Hour,7)) AS time
+   FROM
+    `data-analysis-portfolio-407018.FitBit_Dataset.MinuteSleep`
+ ) 
+ WHERE
+   value=1
+ GROUP BY
+   1,
+   2)
+WHERE
+ sleep_start=sleep_end
+GROUP BY
+ 1,
+ 2,
+ 4
+ORDER BY
+ 3 DESC;
 
 
 
