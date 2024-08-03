@@ -1,0 +1,15 @@
+SELECT 
+ MIN(VeryActiveMinutes) as veryactivemin_min, 
+ MIN(FairlyActiveMinutes) as fairlyactivemin_min,
+ MIN(LightlyActiveMinutes) as lightactivemin_min,
+ MIN(SedentaryMinutes) as sedentarymin_min,
+ MAX(VeryActiveMinutes) as veryactivemin_max,
+ MAX(FairlyActiveMinutes) as fairlyactivemin_max,
+ MAX(LightlyActiveMinutes) as lightactivemin_max,
+ MAX(SedentaryMinutes) as sedentarymin_max,
+ AVG(VeryActiveMinutes) as veryactivemin_avg,
+ AVG(FairlyActiveMinutes) as fairlyactivemin_avg,
+ AVG(LightlyActiveMinutes) as lightactivemin_avg,
+ AVG(SedentaryMinutes) as sedentarymin_avg
+FROM 
+ data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
