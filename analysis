@@ -15,61 +15,87 @@ FROM
  data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
 
 
--- Join tables which have day level
-SELECT
- A.Id,
- A.Calories,
- * EXCEPT(Id,
-   Calories,
-   ActivityDay,
-   SleepDay,
-   SedentaryMinutes,
-   LightlyActiveMinutes,
-   FairlyActiveMinutes,
-   VeryActiveMinutes,
-   SedentaryActiveDistance,
-   LightActiveDistance,
-   ModeratelyActiveDistance,
-   VeryActiveDistance),
- I.SedentaryMinutes,
- I.LightlyActiveMinutes,
- I.FairlyActiveMinutes,
- I.VeryActiveMinutes,
- I.SedentaryActiveDistance,
- I.LightActiveDistance,
- I.ModeratelyActiveDistance,
- I.VeryActiveDistance
+-- Merge all daily tables to perform deeper analysis
+
+-- Creating custom daily_sleep table with new columns using CTE (Common Table Expression)
+WITH daily_sleep_custom AS (
+ SELECT 
+   *,
+   cast(sleepday as date) as default_date
+ FROM
+   data-analysis-portfolio-407018.FitBit_Dataset.SleepDay_1
+),
+
+-- Creating custom daily_activity table with new columns that extract day of week and week number from the 'activitydate' column
+daily_activity_custom AS (
+ SELECT
+  *,
+  FORMAT_DATE("%w", ActivityDate) AS dow_number,
+  FORMAT_DATE("%A", ActivityDate) AS day_of_week
+ FROM
+  data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
+),
+
+-- Join the above two custom tables with daily_calories and daily_intensities, daily_steps and daily_sleep tables to form one big table for day analysis
+daily_analysis AS (
+SELECT 
+ a.Id,
+ a.activitydate,
+ a.day_of_week,
+ a.dow_number,
+ a.calories,
+ a.totalsteps,
+ a.totaldistance,
+ i.sedentaryminutes,
+ i.lightlyactiveminutes,
+  i.fairlyactiveminutes,
+  i.veryactiveminutes,
+  i.sedentaryactivedistance,
+  i.lightactivedistance,
+  i.moderatelyactivedistance,
+  i.veryactivedistance,
+ sl.totaltimeinbed,
+ sl.totalminutesasleep
 FROM
- `data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity` A
-LEFT JOIN
- `data-analysis-portfolio-407018.FitBit_Dataset.DailyCalories` C
-ON
- A.Id = C.Id
- AND A.ActivityDate=C.ActivityDay
- AND A.Calories = C.Calories
-LEFT JOIN
- `data-analysis-portfolio-407018.FitBit_Dataset.DailyIntensities` I
-ON
- A.Id = I.Id
- AND A.ActivityDate=I.ActivityDay
- AND A.FairlyActiveMinutes = I.FairlyActiveMinutes
- AND A.LightActiveDistance = I.LightActiveDistance
- AND A.LightlyActiveMinutes = I.LightlyActiveMinutes
- AND A.ModeratelyActiveDistance = I.ModeratelyActiveDistance
- AND A.SedentaryActiveDistance = I.SedentaryActiveDistance
- AND A.SedentaryMinutes = I.SedentaryMinutes
- AND A.VeryActiveDistance = I.VeryActiveDistance
- AND A.VeryActiveMinutes = I.VeryActiveMinutes
-LEFT JOIN
- `data-analysis-portfolio-407018.FitBit_Dataset.DailySteps` S
-ON
- A.Id = S.Id
- AND A.ActivityDate=S.ActivityDay
-LEFT JOIN
- `data-analysis-portfolio-407018.FitBit_Dataset.SleepDay` Sl
-ON
- A.Id = Sl.Id
- AND A.ActivityDate=Sl.SleepDay;
+ daily_activity_custom AS a
+ LEFT JOIN
+ data-analysis-portfolio-407018.FitBit_Dataset.DailyCalories AS c
+ ON a.Id = c.Id AND a.activitydate = c.activityday AND a.calories = c.calories
+ LEFT JOIN
+ data-analysis-portfolio-407018.FitBit_Dataset.DailyIntensities AS i
+ ON a.Id = i.Id
+ AND a.activitydate = i.activityday
+ AND a.fairlyactiveminutes = i.fairlyactiveminutes
+ AND a.lightactivedistance = i.lightactivedistance
+ AND a.lightlyactiveminutes = i.LightlyActiveMinutes
+ AND a.moderatelyactivedistance = i.moderatelyactivedistance
+ AND a.sedentaryactivedistance = i.sedentaryactivedistance
+ AND a.sedentaryminutes = i.sedentaryminutes
+ AND a.veryactivedistance = i.veryactivedistance
+ AND a.veryactiveminutes = i.veryactiveminutes
+ LEFT JOIN 
+ data-analysis-portfolio-407018.FitBit_Dataset.DailySteps AS s
+ ON a.Id = s.Id AND a.activitydate = s.activityday
+ LEFT JOIN
+ daily_sleep_custom AS sl
+ ON a.Id = sl.Id
+ AND a.activitydate = sl.default_date
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17
+ORDER BY activitydate
+)
+
+-- Extract different types of minutes and time asleep
+SELECT 
+ DISTINCT Id, 
+ ROUND(AVG(sedentaryminutes),2) AS sendentary_mins,
+ ROUND(AVG(lightlyactiveminutes),2) AS lightly_active_mins,
+ ROUND(AVG(fairlyactiveminutes),2) AS fairly_active_mins, 
+ ROUND(AVG(veryactiveminutes),2) AS very_active_mins,
+ ROUND(AVG(totaltimeinbed),2) AS sleep_mins
+FROM daily_analysis
+WHERE totaltimeinbed IS NOT NULL
+GROUP BY Id
+ORDER BY Id;
 
 -- Sleep related product could be a possibility -> check to see if/how people sleep during the day
 -- Assuming a nap is any time someone goes to sleep and wakes up in the same day
@@ -77,20 +103,24 @@ SELECT
  Id,
  sleep_start AS sleep_date,
  COUNT(logId) AS number_naps,
- time_sleeping
+ SUM(EXTRACT(HOUR
+   FROM
+     time_sleeping)) AS total_time_sleeping
 FROM (
  SELECT
    Id,
    logId,
-   MIN(date) AS sleep_start,
-   MAX(date) AS sleep_end,
-   TIME_DIFF(MAX(time), MIN(time), HOUR) AS time_sleeping
- FROM (
-   SELECT
-   *,
-   PARSE_TIME('%H:%M:%S', LEFT(Hour,7)) AS time
-   FROM
-    `data-analysis-portfolio-407018.FitBit_Dataset.MinuteSleep`
+   MIN(DATE(date)) AS sleep_start,
+   MAX(DATE(date)) AS sleep_end,
+   TIME( TIMESTAMP_DIFF(MAX(date),MIN(date),HOUR),
+     MOD(TIMESTAMP_DIFF(MAX(date),MIN(date),MINUTE),60),
+     MOD(MOD(TIMESTAMP_DIFF(MAX(date),MIN(date),SECOND),3600),60) ) AS time_sleeping
+ FROM(
+  SELECT 
+  *,
+  PARSE_TIMESTAMP('%m/%d/%Y %I:%M:%S %p', CAST(date AS STRING)) AS parsed_timestamp
+FROM 
+  `data-analysis-portfolio-407018.FitBit_Dataset.minutesleep_1`
  ) 
  WHERE
    value=1
@@ -101,8 +131,7 @@ WHERE
  sleep_start=sleep_end
 GROUP BY
  1,
- 2,
- 4
+ 2
 ORDER BY
  3 DESC;
 
@@ -219,3 +248,85 @@ ORDER BY
    WHEN time_of_day = "Night" THEN 3
 END
  ;
+
+-- Analyze sleep duration over weekend and weekday
+WITH
+ user_dow_summary AS (
+ SELECT
+   *,
+   FORMAT_DATE("%w", SleepDay) AS dow_number,
+   FORMAT_DATE("%A", SleepDay) AS day_of_week,
+   CASE
+     WHEN FORMAT_DATE("%A", SleepDay) IN ("Sunday", "Saturday") THEN "Weekend"
+     WHEN FORMAT_DATE("%A", SleepDay) NOT IN ("Sunday",
+     "Saturday") THEN "Weekday"
+   ELSE
+   "ERROR"
+ END
+   AS part_of_week,
+   TotalTimeInBed - TotalMinutesAsleep AS minutes_awake
+ FROM
+   data-analysis-portfolio-407018.FitBit_Dataset.SleepDay_1
+ )
+SELECT * FROM user_dow_summary
+
+-- Combine intensity and summary of all users
+
+WITH
+ user_dow_summary AS (
+ SELECT
+   Id,
+   FORMAT_TIMESTAMP("%w", ActivityDay) AS dow_number,
+   FORMAT_TIMESTAMP("%A", ActivityDay) AS day_of_week,
+   CASE
+     WHEN FORMAT_TIMESTAMP("%A", ActivityDay) IN ("Sunday", "Saturday") THEN "Weekend"
+     WHEN FORMAT_TIMESTAMP("%A", ActivityDay) NOT IN ("Sunday",
+     "Saturday") THEN "Weekday"
+   ELSE
+   "ERROR"
+ END
+   AS part_of_week,
+   CASE
+     WHEN TIME(PARSE_TIMESTAMP('%I:%M:%S %p', ActivityHour)) BETWEEN TIME(MORNING_START, 0, 0) AND TIME(MORNING_END, 0, 0) THEN "Morning"
+     WHEN TIME(PARSE_TIMESTAMP('%I:%M:%S %p', ActivityHour)) BETWEEN TIME(MORNING_END,
+     0,
+     0)
+   AND TIME(AFTERNOON_END,
+     0,
+     0) THEN "Afternoon"
+     WHEN TIME(PARSE_TIMESTAMP('%I:%M:%S %p', ActivityHour)) BETWEEN TIME(AFTERNOON_END, 0, 0) AND TIME(EVENING_END, 0, 0) THEN "Evening"
+     WHEN TIME(PARSE_TIMESTAMP('%I:%M:%S %p', ActivityHour)) >= TIME(EVENING_END,
+     0,
+     0)
+   OR TIME(TIMESTAMP_TRUNC(PARSE_TIMESTAMP('%I:%M:%S %p', ActivityHour), MINUTE)) <= TIME(MORNING_START,
+     0,
+     0) THEN "Night"
+   ELSE
+   "ERROR"
+ END
+   AS time_of_day,
+   AverageIntensity,
+   SUM(TotalIntensity) AS total_intensity,
+   SUM(AverageIntensity) AS total_avg_intensity
+ FROM
+   `data-analysis-portfolio-407018.FitBit_Dataset.HourlyIntensities`
+ GROUP BY
+   1, 2, 3, 4, 5, 6
+ )
+
+SELECT
+ HI.Id,
+ day_of_week,
+ part_of_week,
+ time_of_day,
+ total_intensity,
+ total_avg_intensity,
+ AverageIntensity,
+ SUM(Calories) AS total_calories,
+ ROUND(AVG(Calories), 2) AS avg_calories
+FROM 
+ user_dow_summary AS HI
+ LEFT JOIN data-analysis-portfolio-407018.FitBit_Dataset.HourlyCalories AS HC
+ ON HI.Id = HC.Id
+GROUP BY
+ 1, 2, 3, 4, 5, 6, 7
