@@ -1,32 +1,61 @@
+-- Bellabeat Case Study Analysis - Complete SQL Code
+
+-- 1. Summary statistic
+
+-- Daily steps
 SELECT 
- MIN(VeryActiveMinutes) as veryactivemin_min, 
- MIN(FairlyActiveMinutes) as fairlyactivemin_min,
- MIN(LightlyActiveMinutes) as lightactivemin_min,
- MIN(SedentaryMinutes) as sedentarymin_min,
- MAX(VeryActiveMinutes) as veryactivemin_max,
- MAX(FairlyActiveMinutes) as fairlyactivemin_max,
- MAX(LightlyActiveMinutes) as lightactivemin_max,
- MAX(SedentaryMinutes) as sedentarymin_max,
- AVG(VeryActiveMinutes) as veryactivemin_avg,
- AVG(FairlyActiveMinutes) as fairlyactivemin_avg,
- AVG(LightlyActiveMinutes) as lightactivemin_avg,
- AVG(SedentaryMinutes) as sedentarymin_avg
+ MIN(TotalSteps) AS min_daily_steps, 
+ MAX(TotalSteps) AS max_daily_steps,
+ AVG(TotalSteps) AS avg_daily_steps,
 FROM 
  data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
 
+-- Distance
+SELECT 
+ MIN(TotalDistance) AS min_distance, 
+ MAX(TotalDistance) AS max_distance,
+ AVG(TotalDistance) AS avg_distance,
+FROM 
+ data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
+
+-- Minutes sleep
+SELECT 
+ MIN(TotalDistance) AS min_distance, 
+ MAX(TotalDistance) AS max_distance,
+ AVG(TotalDistance) AS avg_distance,
+FROM 
+ data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
+
+-- Active minutes
+SELECT 
+ MIN(VeryActiveMinutes) AS veryactivemin_min, 
+ MIN(FairlyActiveMinutes) AS fairlyactivemin_min,
+ MIN(LightlyActiveMinutes) AS lightlyactivemin_min,
+ MIN(SedentaryMinutes) AS sedentarymin_min,
+ MAX(VeryActiveMinutes) AS veryactivemin_max,
+ MAX(FairlyActiveMinutes) AS fairlyactivemin_max,
+ MAX(LightlyActiveMinutes) AS lightactivemin_max,
+ MAX(SedentaryMinutes) AS sedentarymin_max,
+ AVG(VeryActiveMinutes) AS veryactivemin_avg,
+ AVG(FairlyActiveMinutes) AS fairlyactivemin_avg,
+ AVG(LightlyActiveMinutes) AS lightactivemin_avg,
+ AVG(SedentaryMinutes) AS sedentarymin_avg
+FROM 
+ data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
+
+-- 2. Analysis on daily activity
 
 -- Merge all daily tables to perform deeper analysis
-
--- Creating custom daily_sleep table with new columns using CTE (Common Table Expression)
+-- Create custom daily_sleep table with new columns using CTE (Common Table Expression)
 WITH daily_sleep_custom AS (
  SELECT 
    *,
-   cast(sleepday as date) as default_date
+   cast(sleepday as date) AS default_date
  FROM
    data-analysis-portfolio-407018.FitBit_Dataset.SleepDay_1
 ),
 
--- Creating custom daily_activity table with new columns that extract day of week and week number from the 'activitydate' column
+-- Create custom daily_activity table with new columns that extract day of week and week number from the 'activitydate' column
 daily_activity_custom AS (
  SELECT
   *,
@@ -36,7 +65,7 @@ daily_activity_custom AS (
   data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
 ),
 
--- Join the above two custom tables with daily_calories and daily_intensities, daily_steps and daily_sleep tables to form one big table for day analysis
+-- Join the above two custom tables with daily_calories, daily_intensities, daily_steps and daily_sleep tables
 daily_analysis AS (
 SELECT 
  a.Id,
@@ -103,39 +132,32 @@ SELECT
  Id,
  sleep_start AS sleep_date,
  COUNT(logId) AS number_naps,
- SUM(EXTRACT(HOUR
-   FROM
-     time_sleeping)) AS total_time_sleeping
+ SUM(EXTRACT(HOUR FROM time_sleeping)) AS total_time_sleeping
 FROM (
  SELECT
-   Id,
-   logId,
-   MIN(DATE(date)) AS sleep_start,
-   MAX(DATE(date)) AS sleep_end,
-   TIME( TIMESTAMP_DIFF(MAX(date),MIN(date),HOUR),
-     MOD(TIMESTAMP_DIFF(MAX(date),MIN(date),MINUTE),60),
-     MOD(MOD(TIMESTAMP_DIFF(MAX(date),MIN(date),SECOND),3600),60) ) AS time_sleeping
+  Id,
+  logId,
+  MIN(DATE(date)) AS sleep_start,
+  MAX(DATE(date)) AS sleep_end,
+  TIME( TIMESTAMP_DIFF(MAX(date),MIN(date),HOUR),
+  MOD(TIMESTAMP_DIFF(MAX(date),MIN(date),MINUTE),60),
+  MOD(MOD(TIMESTAMP_DIFF(MAX(date),MIN(date),SECOND),3600),60) ) AS time_sleeping
  FROM(
   SELECT 
-  *,
-  PARSE_TIMESTAMP('%m/%d/%Y %I:%M:%S %p', CAST(date AS STRING)) AS parsed_timestamp
-FROM 
-  `data-analysis-portfolio-407018.FitBit_Dataset.minutesleep_1`
- ) 
- WHERE
-   value=1
- GROUP BY
-   1,
-   2)
+   *,
+   PARSE_TIMESTAMP('%m/%d/%Y %I:%M:%S %p', CAST(date AS STRING)) AS parsed_timestamp
+  FROM 
+   `data-analysis-portfolio-407018.FitBit_Dataset.minutesleep_1`
+ )
+ WHERE value=1
+ GROUP BY 1, 2
+)
 WHERE
- sleep_start=sleep_end
-GROUP BY
- 1,
- 2
-ORDER BY
- 3 DESC;
+ sleep_start = sleep_end
+GROUP BY 1, 2
+ORDER BY 3 DESC;
 
--- Do an analysis based on time of the day and day of the week
+-- Analyze based on time of the day and day of the week
 -- Smooth over anomalous days
 WITH
  user_dow_summary AS (
