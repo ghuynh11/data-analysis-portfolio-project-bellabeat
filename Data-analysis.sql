@@ -372,7 +372,7 @@ ORDER BY Id
 -- Percentage of weeks a participant is successful in achieving ≥ 150 active minutes
 SELECT 
  achievement_group, 
- COUNT(*),
+ COUNT(*) AS user_count,
  ROUND((COUNT(*)/33.0),3)*100 AS percent_of_whole
 FROM 
  achievement_grp
