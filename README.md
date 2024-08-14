@@ -101,7 +101,25 @@ SQL query: *Add link*
 
 SQL query: *Add link*
 
-*Add tables*
+Daily steps:
+
+![Daily steps](https://github.com/user-attachments/assets/c520433c-3ad3-4990-9757-227ecfa6dc5b)
+
+Distance:
+
+![Distance](https://github.com/user-attachments/assets/e431c86f-a069-448d-a89b-5ea139401ccf)
+
+Minutes asleep:
+
+![Minutes asleep](https://github.com/user-attachments/assets/eecae7a7-3770-40e4-8dd4-138655327074)
+
+Very active, fairly active, lightly active and sedentary active minutes:
+
+![MIN_active minutes](https://github.com/user-attachments/assets/5265cb6d-795a-4249-a597-2daa5c0fdffc)
+
+![MAX_active minutes](https://github.com/user-attachments/assets/e6a43327-a5b1-45f0-8c12-d1802026aab1)
+
+![AVG_active minutes](https://github.com/user-attachments/assets/578135ba-6974-425f-9f3c-8e9616691ceb)
 
 **Findings:**
 - 7638 average total steps are below the recommended daily total steps of 10,000 (source: [National Institute of Health](https://www.nih.gov/news-events/nih-research-matters/number-steps-day-more-important-step-intensity#:~:text=A%20goal%20of%2010%2C000%20steps,been%20done%20in%20older%20adults.).
