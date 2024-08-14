@@ -6,25 +6,25 @@
 SELECT 
  MIN(TotalSteps) AS min_daily_steps, 
  MAX(TotalSteps) AS max_daily_steps,
- AVG(TotalSteps) AS avg_daily_steps,
+ ROUND(AVG(TotalSteps),1) AS avg_daily_steps,
 FROM 
  data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
-
+ 
 -- Distance
 SELECT 
  MIN(TotalDistance) AS min_distance, 
  MAX(TotalDistance) AS max_distance,
- AVG(TotalDistance) AS avg_distance,
+ ROUND(AVG(TotalDistance),1) AS avg_distance,
 FROM 
  data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
 
 -- Minutes sleep
 SELECT 
- MIN(TotalDistance) AS min_distance, 
- MAX(TotalDistance) AS max_distance,
- AVG(TotalDistance) AS avg_distance,
+ MIN(TotalMinutesAsleep) AS min_minutes_asleep, 
+ MAX(TotalMinutesAsleep) AS max_minutes_asleep,
+ ROUND(AVG(TotalMinutesAsleep),1) AS avg_minutes_asleep
 FROM 
- data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
+ data-analysis-portfolio-407018.FitBit_Dataset.SleepDay_1
 
 -- Active minutes
 SELECT 
@@ -34,12 +34,12 @@ SELECT
  MIN(SedentaryMinutes) AS sedentarymin_min,
  MAX(VeryActiveMinutes) AS veryactivemin_max,
  MAX(FairlyActiveMinutes) AS fairlyactivemin_max,
- MAX(LightlyActiveMinutes) AS lightactivemin_max,
+ MAX(LightlyActiveMinutes) AS lightlyactivemin_max,
  MAX(SedentaryMinutes) AS sedentarymin_max,
- AVG(VeryActiveMinutes) AS veryactivemin_avg,
- AVG(FairlyActiveMinutes) AS fairlyactivemin_avg,
- AVG(LightlyActiveMinutes) AS lightactivemin_avg,
- AVG(SedentaryMinutes) AS sedentarymin_avg
+ ROUND(AVG(VeryActiveMinutes),1) AS veryactivemin_avg,
+ ROUND(AVG(FairlyActiveMinutes),1) AS fairlyactivemin_avg,
+ ROUND(AVG(LightlyActiveMinutes),1) AS lightactivemin_avg,
+ ROUND(AVG(SedentaryMinutes),1) AS sedentarymin_avg
 FROM 
  data-analysis-portfolio-407018.FitBit_Dataset.DailyActivity
 
