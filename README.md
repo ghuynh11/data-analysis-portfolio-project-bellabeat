@@ -148,6 +148,104 @@ Analyze how the users spend their time based on different types of minutes
 - Targeting Sedentary Users: Since most users have low very active minutes, a marketing strategy could focus on encouraging moderate increases in activity levels, such as setting achievable fitness goals.
 - Highlight Benefits: Educational content on the health benefits of even small increases in very active minutes could be emphasized to motivate users to be more active.
 
+*Correlation between total steps & calories burned - Add graphic*
+
+The correlation value is 0.59.
+
+→ There’s moderate positive correlation between total steps and calories burned.
+
+→ However, some data points are at 0 or near 0 on the x-axis (total steps), yet they are higher on the y-axis (calories). This could happen for some reasons:
+- Basal Metabolic Rate (BMR): Caloric Burn Without Activity, even if someone does not take any steps during the day, they still burn calories due to their basal metabolic rate (BMR).
+- Other Forms of Exercise: Calories could be burned through activities that do not involve step count, such as cycling, swimming, or weightlifting. These activities burn calories without necessarily being reflected in the step count.
+- Tracking Errors: There might be discrepancies in how the device recorded steps versus calories. This can happen due to issues like syncing problems, the device being worn improperly, or other technical errors.
+- Missing Data: If steps weren’t recorded accurately (e.g., the device wasn’t worn during walking but was during sedentary periods), it could result in zero steps being recorded but still show calories burned.
+
+*Correlation between very active minutes & calories burned - Add graphic*
+
+The correlation value is 0.62.
+
+→ There’s moderate positive correlation between very active minutes and calories burned.
+
+→ In this graph, there’re even more data points at 0 or near 0 on the x-axis (very active minutes), yet these data points are higher on the y-axis (calories burned). Some of the reasons could be:
+- Some users have higher Basal Metabolic Rate
+- Some users had additional activities not captured as “Very active minutes”. For example, yoga, stretching, strength training might not be recorded for very active minutes category.
+- Tracking errors or missing data.
+
+*Correlation between lightly active minutes & calories burned - Add graphic*
+
+The correlation value is 0.29.
+
+→ The correlation between lightly active minutes and calories burned is not very strong. As lightly active minutes increase, the calories burned slightly increase.
+
+*Correlation between total minutes asleep & calories burned - Add graphic*
+
+The correlation value is -0.03.
+
+→ There’s essentially no linear relationship between total minutes asleep and calories burned.
+
+*Correlation between total minutes asleep & total steps - Add graphic*
+
+The correlation value is -0.19
+
+**3. Analysis on how people sleep**
+
+*Avg. total minutes asleep throughout the week - Add graphic*
+
+*Avg. minutes awake thoughout the week - Add graphic*
+
+→ The average time asleep of the users is higher on Sunday and Wednesday compared to the other days.
+
+→ The users seem to sleep more on weekend, but they also spend more time awake on bed. This could indicate that the quality of sleep is not very good.
+
+**4. Analysis on intensity level upon time of day and day of week**
+
+Time of day: Morning, Afternoon, Evening, Night
+Day of the week: Weekday, Weekend
+Dataset: hourlyIntensities_merged
+- Investigate how activity intensity varies by time of day, day of the week, and part of the week (weekday vs. weekend).
+- Identify Patterns: Look for patterns that might suggest user behaviors, such as peak activity times or consistent days of low activity.
+- Behavioral Segmentation: Group users based on their activity patterns
+
+*Intensity level - Add graphic*
+
+→ The total intensity level among the users is highest on Tuesday, follows by Wednesday.
+
+*Intensity level upon time of day and day of week - Add graphic*
+
+→ Users are more active either in the morning or in the afternoon.
+
+→ Users are mostly active on Tuesday and Wednesday afternoon.
+
+*Total intensity decile - Add graphic*
+
+→ The first decile represents the lower bound of intensity, showing where 10% of the data points fall. The total intensity at the first decile tends to be lower on Monday compared to the others.
+
+→ The ninth decile represents the upper bound of intensity, showing where 90% of the data points fall. The total intensity at the ninth decile is generally higher from Tuesday to Thursday compared to others, indicating more active or intense activity on these days.
+
+→ This pattern might suggest that users are less active on weekends, or their activity intensity is more moderate.
+
+**Actionable recommendations for marketing strategy:**
+- Promote Bellabeat membership feature: provide fully personalized guidance on suitable nutrition on active days and rest days.
+- Push notifications of Bellabeat app should align with peak activity time and resting time. → For example, diet suggestions in the morning before and after workout. Mindfulness reminder on rest day.
+
+**5. Analysis based on achievement groups**
+
+Here we calculate percentage of weeks a participant is successful in achieving ≥ 150 active (moderate/vigorous) activity minutes and divide them into achievement group and calculate how many participants are present in each group.
+- GROUP A: high rate (successful 80–100% of weeks)
+- GROUP B: regular rate (successful 60–79% of weeks)
+- GROUP C: low rate (successful 0–59% of weeks)
+
+## STEP 5: Share
+
+
+
+## STEP 6: Act
+
+
+
+
+
+
 
 
 
