@@ -20,8 +20,6 @@ I follow the steps below for this project:
 ## STEP 1: Ask
 **Topic:** Smart device health data
 
-**Problem type:** …
-
 **Business task:**
 - Analyse smart device fitness data to unlock new growth opportunities for the company
 - Gain insights into how consumers are using non-Bellabeat smart devices → Then select one Bellabeat product to apply these insights
@@ -44,8 +42,6 @@ As there’re no information about the goals of marketing strategy for the Bella
 - Sando Mur: Mathematician and Bellabeat’s cofounder; key member of the Bellabeat executive team
 - Bellabeat marketing analytics team
 
-**My references:**
-...
 
 ## STEP 2: Prepare
 **Dataset:** the data is stored in Kaggle public dataset and provided by Möbius.
@@ -94,12 +90,12 @@ As there’re no information about the goals of marketing strategy for the Bella
 - In the “weightLogInfo_merged” dataset, there are only 8 unique IDs instead of 33.
 
 **The datasets are uploaded into SQL BigQuery for further data cleaning and manipulation:**
-SQL query: *Add link*
+SQL query: [Link](https://github.com/ghuynh11/data-analysis-portfolio-project-bellabeat/blob/main/Data-processing.sql)
 
 ## STEP 4: Analyze
 **1. Summary statistics**
 
-SQL query: *Add link*
+SQL query: [Link](https://github.com/ghuynh11/data-analysis-portfolio-project-bellabeat/blob/main/Data-analysis.sql)
 
 Daily steps:
 
@@ -133,40 +129,38 @@ Very active, fairly active, lightly active and sedentary active minutes:
 
 **2. Analysis on daily activity**
 
-*Daily avg. total step - Add graphic*
+![Daily avg  total steps](https://github.com/user-attachments/assets/07f549db-e68c-44db-b877-0f45843ebdc1)
 
 → The users tend to walk more on Tuesday and Saturday compared to the other days of the week.
 
-*Daily avg. very active minutes - Add graphic*
+![Daily avg  very active minutes](https://github.com/user-attachments/assets/c5184ee5-e90f-4639-b917-cc5955c41aad)
 
 → The users tend to be more active on Monday and Tuesday compared to the other days of the week.
 
-*Distribution of very active minutes - Add graphic*
+![Distribution of very active minutes](https://github.com/user-attachments/assets/e7d4e2fa-8563-4eb1-96aa-e86fa9499afe)
 
 → The majority of users have very few “Very Active Minutes” per day, with a large number clustered around the lower end of the spectrum (0-10 minutes).
 → This suggests that a significant portion of users are not engaging in high levels of high-intensity activity regularly.
 
-*Daily avg. minutes based on different categories - Add graphic*
+![Daily avg  minutes](https://github.com/user-attachments/assets/7fdd9f71-a9f1-49ce-abb9-f8e7dbc2e453)
 
 → This graph indicates again that the majority of the users are often not active. The average sedentary minutes are the highest among the other categories. This might suggest that some users have higher amount of sedentary behaviours, which are defined as time spent sitting or lying with low energy expenditure, while awake, in the context of occupational, educational, home,... (Source: [WHO](https://iris.who.int/bitstream/handle/10665/336656/9789240015128-eng.pdf?sequence=1)
 
 Analyze how the users spend their time based on different types of minutes
 
-*Avg. daily activity in minutes - Add graphic*
+![Sheet 9](https://github.com/user-attachments/assets/c3afc2e2-1392-45b0-90d4-abbabacdf9eb)
 
 → Most of the time of the day is spent on sedentary activities and sleep. Only a small part of the time is spent on activities which are recorded as active, fairly active or lightly active minutes.
 
-*Intensity level based on time of week and time of day - Add graphic*
+![Intensity](https://github.com/user-attachments/assets/5f66ae0a-30aa-4a69-be8f-d768da000121)
 
-*Intensity level and calories burned based on time of week and time of day - Add graphic*
-
-→ *Add analysis ...*
+→ On Monday, Tuesday and Wednesday, the users tend to have higher intensity level in the morning and in the afternoon. The calories burned at these times are also respectively higher compared to the other days of the week.
 
 **Actionable recommendations for marketing strategy:**
 - Targeting Sedentary Users: Since most users have low very active minutes, a marketing strategy could focus on encouraging moderate increases in activity levels, such as setting achievable fitness goals.
 - Highlight Benefits: Educational content on the health benefits of even small increases in very active minutes could be emphasized to motivate users to be more active.
 
-*Correlation between total steps & calories burned - Add graphic*
+![Corr_total steps_calories burned](https://github.com/user-attachments/assets/027ff965-395d-4743-97c4-6f28771c7706)
 
 The correlation value is 0.59.
 
@@ -178,7 +172,7 @@ The correlation value is 0.59.
 - Tracking Errors: There might be discrepancies in how the device recorded steps versus calories. This can happen due to issues like syncing problems, the device being worn improperly, or other technical errors.
 - Missing Data: If steps weren’t recorded accurately (e.g., the device wasn’t worn during walking but was during sedentary periods), it could result in zero steps being recorded but still show calories burned.
 
-*Correlation between very active minutes & calories burned - Add graphic*
+![Corr_active minutes_calories burned](https://github.com/user-attachments/assets/3b378496-28c6-4522-85ae-fb8abf665cec)
 
 The correlation value is 0.62.
 
@@ -189,27 +183,21 @@ The correlation value is 0.62.
 - Some users had additional activities not captured as “Very active minutes”. For example, yoga, stretching, strength training might not be recorded for very active minutes category.
 - Tracking errors or missing data.
 
-*Correlation between lightly active minutes & calories burned - Add graphic*
-
-The correlation value is 0.29.
-
-→ The correlation between lightly active minutes and calories burned is not very strong. As lightly active minutes increase, the calories burned slightly increase.
-
-*Correlation between total minutes asleep & calories burned - Add graphic*
+![Corr_minutes asleep_calories burned](https://github.com/user-attachments/assets/cef357e2-f4e5-491f-a2a9-a25e2d701712)
 
 The correlation value is -0.03.
 
 → There’s essentially no linear relationship between total minutes asleep and calories burned.
 
-*Correlation between total minutes asleep & total steps - Add graphic*
+![Corr_minutes asleep_total steps](https://github.com/user-attachments/assets/1d5f94ce-4f44-481e-9504-b100c80368d5)
 
 The correlation value is -0.19
 
 **3. Analysis on how people sleep**
 
-*Avg. total minutes asleep throughout the week - Add graphic*
+![Avg  total asleep](https://github.com/user-attachments/assets/587e1e85-5c83-4338-8641-e6b4387ac86c)
 
-*Avg. minutes awake thoughout the week - Add graphic*
+![Avg  total awake](https://github.com/user-attachments/assets/788f2092-9b47-45b0-bbaa-9e09b5ba818f)
 
 → The average time asleep of the users is higher on Sunday and Wednesday compared to the other days.
 
@@ -224,17 +212,17 @@ Dataset: hourlyIntensities_merged
 - Identify Patterns: Look for patterns that might suggest user behaviors, such as peak activity times or consistent days of low activity.
 - Behavioral Segmentation: Group users based on their activity patterns
 
-*Intensity level - Add graphic*
+![Intensity_level](https://github.com/user-attachments/assets/1ed6bce4-8fd5-48e8-9265-8b8eaf8012d9)
 
 → The total intensity level among the users is highest on Tuesday, follows by Wednesday.
 
-*Intensity level upon time of day and day of week - Add graphic*
+![Intensity_day](https://github.com/user-attachments/assets/0ae4b04e-1512-42bd-981b-e6113a117457)
 
 → Users are more active either in the morning or in the afternoon.
 
 → Users are mostly active on Tuesday and Wednesday afternoon.
 
-*Total intensity decile - Add graphic*
+![Intensity_decile](https://github.com/user-attachments/assets/fc6ef068-5c32-406b-bff3-b85c88777f9f)
 
 → The first decile represents the lower bound of intensity, showing where 10% of the data points fall. The total intensity at the first decile tends to be lower on Monday compared to the others.
 
@@ -248,17 +236,44 @@ Dataset: hourlyIntensities_merged
 
 **5. Analysis based on achievement groups**
 
-Here we calculate percentage of weeks a participant is successful in achieving ≥ 150 active (moderate/vigorous) activity minutes and divide them into achievement group and calculate how many participants are present in each group.
-- GROUP A: high rate (successful 80–100% of weeks)
-- GROUP B: regular rate (successful 60–79% of weeks)
-- GROUP C: low rate (successful 0–59% of weeks)
+Create total active and fairly active minutes weekly summary for each user and extract all weeks that have active minutes from 150 and above.
+
+The result from SQL query shows 154 records of weekly active minutes of each user through the entire analysis period, of which:
+- 46% of the observations have below 150 active minutes per week. This is below the recommendation of WHO: 150 – 300 minutes of moderate intensity activity per week for good health and wellbeing.
+- 29% of the observations have between 150 to 300 active minutes per week.
+- 25% of the observations have more than 300 active minutes per week.
+
+![Group](https://github.com/user-attachments/assets/e815da1e-720a-44c9-9183-d744af2fda7d)
+
+**Results:**
+- Group A: high weekly achievement rate
+  42.4% of all users are in this group (14 of 33) got 80 – 100% of weeks of active minutes ≥ 150.
+- Group B: weekly regular achievement rate
+  9.1% of all users are in this group (3 of 33) got 60 – 79% of weeks of active minutes ≥ 150.
+- Group C: weekly low achievement rate
+  48.5% of all participants are in this group (16 of 33) got 0 – 59% of weeks of active minutes ≥ 150.
 
 ## STEP 5: Share
 
+Tool: Tableau
 
+The insights and findings of the analysis are shared in this step through data visualization in form of graphs and plots. This makes it easier for the non-technical audience to understand the important findings.
+
+For this project, it would be better to share the visualizations together with their respective queries and tables.
+
+I also created a Tableau dashboard of all the visualizations of this project in this link. **(Dashboard to be finalized)**
 
 ## STEP 6: Act
 
+The important findings from the analysis of smart device fitness data:
+- 7638 average total steps of all users are below the recommended daily total steps of 10,000 (source: National Institute of Health)
+- The average sedentary active minutes (time spent while sitting or lying down) is highest among the other categories (991 minutes).
+- One of the most important metrics of the analysis are the active minutes, including very active minutes and fairly activeminutes. → Nearly 50% of the users have less than 60% of the weeks where they achieved more than 150 minutes active minutes.
+→ Together with the findings about average total steps and average sedentary minutes, I would conclude that most of the users are not active.
+- Generally, the users tend to be more active on Monday, Tuesday and Wednesday compared to the other days of the week. The most active time of the day are in the morning and in the afternoon.
+- The users seem to sleep more on weekend, but they also spend more time awake on bed. This could indicate that the quality of sleep is not very good.
+
+**Recommendations for marketing strategy to be summarized**
 
 
 
