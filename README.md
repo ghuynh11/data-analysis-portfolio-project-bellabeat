@@ -90,6 +90,7 @@ As there’re no information about the goals of marketing strategy for the Bella
 - In the “weightLogInfo_merged” dataset, there are only 8 unique IDs instead of 33.
 
 **The datasets are uploaded into SQL BigQuery for further data cleaning and manipulation:**
+
 SQL query: [Link](https://github.com/ghuynh11/data-analysis-portfolio-project-bellabeat/blob/main/Data-processing.sql)
 
 ## STEP 4: Analyze
