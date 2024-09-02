@@ -48,7 +48,7 @@ As there’re no information about the goals of marketing strategy for the Bella
 [Link to dataset](https://www.kaggle.com/datasets/arashnic/fitbit)
 
 **Is the data ROCCC?**
-- Reliable: yes
+- Reliable: not really (more details in the description below)
 - Original: yes
 - Comprehensive: yes
 - Current: The data is updated 4 months ago (02.2024). But the original data dated back to 2016 which is not actual considering the current year.
@@ -79,7 +79,6 @@ As there’re no information about the goals of marketing strategy for the Bella
 - hourlySteps_merged
 - minuteSleep_merged
 - sleepDay_merged
-- weightLogInfo_merged
 
 **Documentation of data cleaning and manipulation in Google Sheets:**
 - Sorted and filtered the data
@@ -98,68 +97,43 @@ SQL query: [Link](https://github.com/ghuynh11/data-analysis-portfolio-project-be
 
 SQL query: [Link](https://github.com/ghuynh11/data-analysis-portfolio-project-bellabeat/blob/main/Data-analysis.sql)
 
-Daily steps:
+Daily steps, distance, minutes asleep:
 
-![Daily steps](https://github.com/user-attachments/assets/c520433c-3ad3-4990-9757-227ecfa6dc5b)
-
-Distance:
-
-![Distance](https://github.com/user-attachments/assets/e431c86f-a069-448d-a89b-5ea139401ccf)
-
-Minutes asleep:
-
-![Minutes asleep](https://github.com/user-attachments/assets/eecae7a7-3770-40e4-8dd4-138655327074)
+<img width="481" alt="image" src="https://github.com/user-attachments/assets/2d4e4805-8fca-498d-8eb0-59256c1d702b">
 
 Very active, fairly active, lightly active and sedentary active minutes:
 
-![MIN_active minutes](https://github.com/user-attachments/assets/5265cb6d-795a-4249-a597-2daa5c0fdffc)
+<img width="633" alt="image" src="https://github.com/user-attachments/assets/94a9962a-4d54-48c0-9d47-547d260878f8">
 
-![MAX_active minutes](https://github.com/user-attachments/assets/e6a43327-a5b1-45f0-8c12-d1802026aab1)
-
-![AVG_active minutes](https://github.com/user-attachments/assets/578135ba-6974-425f-9f3c-8e9616691ceb)
 
 **Findings:**
-- 7638 average total steps are below the recommended daily total steps of 10,000 (source: [National Institute of Health](https://www.nih.gov/news-events/nih-research-matters/number-steps-day-more-important-step-intensity#:~:text=A%20goal%20of%2010%2C000%20steps,been%20done%20in%20older%20adults.).
+- 7638 average total steps are below the recommended daily total steps of 10,000 (source: [National Institute of Health](https://www.nih.gov/news-events/nih-research-matters/number-steps-day-more-important-step-intensity#:~:text=A%20goal%20of%2010%2C000%20steps,been%20done%20in%20older%20adults.)).
 - The average sedentary active minutes (time spent while sitting or lying down) is highest among the other categories.
 - The median value of 4 very active minutes indicates that half of the users spend less than or equal to 4 minutes in “Very Active” physical activity per day, and the other half spend more than 4 minutes. This suggests that while the average is 21 very active minutes, the majority of users are not engaging in very high levels of intense physical activity; many users might be doing much less than the average suggests.
 
-**Actionable recommendations for marketing strategy:**
-- Targeting Less Active Users: Marketing strategies could be developed to target the majority of users who are less active, encouraging them to increase their daily “Very Active Minutes.”
-- Engagement Programs: Creating challenges or programs aimed at increasing users’ very active minutes might help shift the median upwards, improving overall user fitness.
-- Personalized Recommendations: For users on the lower end of the activity scale, personalized recommendations could help them gradually increase their very active minutes, potentially improving their health outcomes.
-
 **2. Analysis on daily activity**
 
-![Daily avg  total steps](https://github.com/user-attachments/assets/07f549db-e68c-44db-b877-0f45843ebdc1)
+![Daily avg  total steps   very active min](https://github.com/user-attachments/assets/f4d8506e-e679-4452-9164-dac0b52de933)
 
 → The users tend to walk more on Tuesday and Saturday compared to the other days of the week.
 
-![Daily avg  very active minutes](https://github.com/user-attachments/assets/c5184ee5-e90f-4639-b917-cc5955c41aad)
+→ Based on the very active minutes category, the users are more active on Monday and Tuesday.
 
-→ The users tend to be more active on Monday and Tuesday compared to the other days of the week.
-
-![Distribution of very active minutes](https://github.com/user-attachments/assets/e7d4e2fa-8563-4eb1-96aa-e86fa9499afe)
+![Distribution very active min](https://github.com/user-attachments/assets/662463b7-c510-4e94-8081-581513913e42)
 
 → The majority of users have very few “Very Active Minutes” per day, with a large number clustered around the lower end of the spectrum (0-10 minutes).
+
 → This suggests that a significant portion of users are not engaging in high levels of high-intensity activity regularly.
 
-![Daily avg  minutes](https://github.com/user-attachments/assets/7fdd9f71-a9f1-49ce-abb9-f8e7dbc2e453)
+![Daily avg  min categories - Day of week](https://github.com/user-attachments/assets/07e6cf19-bcef-4a3b-9dc4-7f23953d9c91)
 
-→ This graph indicates again that the majority of the users are often not active. The average sedentary minutes are the highest among the other categories. This might suggest that some users have higher amount of sedentary behaviours, which are defined as time spent sitting or lying with low energy expenditure, while awake, in the context of occupational, educational, home,... (Source: [WHO](https://iris.who.int/bitstream/handle/10665/336656/9789240015128-eng.pdf?sequence=1)
+![Daily avg  min categories](https://github.com/user-attachments/assets/c5871163-ea3a-45f7-a3fd-2ca7aca79e33)
 
-Analyze how the users spend their time based on different types of minutes
+→ This graph indicates again that the majority of the users are often not active. The average sedentary minutes are the highest among the other categories. This might suggest that some users have higher amount of sedentary behaviours, which are defined as time spent sitting or lying with low energy expenditure, while awake, in the context of occupational, educational, home,... (Source: [WHO](https://iris.who.int/bitstream/handle/10665/336656/9789240015128-eng.pdf?sequence=1))
 
-![Sheet 9](https://github.com/user-attachments/assets/c3afc2e2-1392-45b0-90d4-abbabacdf9eb)
-
-→ Most of the time of the day is spent on sedentary activities and sleep. Only a small part of the time is spent on activities which are recorded as active, fairly active or lightly active minutes.
-
-![Intensity](https://github.com/user-attachments/assets/5f66ae0a-30aa-4a69-be8f-d768da000121)
+![Total intensity   total calories](https://github.com/user-attachments/assets/802b8b9c-c164-434c-aa83-b8baada56d4b)
 
 → On Monday, Tuesday and Wednesday, the users tend to have higher intensity level in the morning and in the afternoon. The calories burned at these times are also respectively higher compared to the other days of the week.
-
-**Actionable recommendations for marketing strategy:**
-- Targeting Sedentary Users: Since most users have low very active minutes, a marketing strategy could focus on encouraging moderate increases in activity levels, such as setting achievable fitness goals.
-- Highlight Benefits: Educational content on the health benefits of even small increases in very active minutes could be emphasized to motivate users to be more active.
 
 ![Corr_total steps_calories burned](https://github.com/user-attachments/assets/027ff965-395d-4743-97c4-6f28771c7706)
 
@@ -276,7 +250,13 @@ The important findings from the analysis of smart device fitness data:
 
 **Recommendations for marketing strategy to be summarized**
 
-
+**Actionable recommendations for marketing strategy:** (from Summary Statistics)
+- Targeting Less Active Users: Marketing strategies could be developed to target the majority of users who are less active, encouraging them to increase their daily “Very Active Minutes.”
+- Engagement Programs: Creating challenges or programs aimed at increasing users’ very active minutes might help shift the median upwards, improving overall user fitness.
+- Personalized Recommendations: For users on the lower end of the activity scale, personalized recommendations could help them gradually increase their very active minutes, potentially improving their health outcomes.
+**Actionable recommendations for marketing strategy:** (from total intensity & total calories)
+- Targeting Sedentary Users: Since most users have low very active minutes, a marketing strategy could focus on encouraging moderate increases in activity levels, such as setting achievable fitness goals.
+- Highlight Benefits: Educational content on the health benefits of even small increases in very active minutes could be emphasized to motivate users to be more active.
 
 
 
