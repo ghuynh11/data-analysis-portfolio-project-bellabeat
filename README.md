@@ -113,33 +113,41 @@ Very active, fairly active, lightly active and sedentary active minutes:
 
 **2. Analysis on daily activity**
 
-![Daily avg  total steps   very active min](https://github.com/user-attachments/assets/f4d8506e-e679-4452-9164-dac0b52de933)
+![Daily avg  total steps   very active min](https://github.com/user-attachments/assets/bb15bcd7-f55f-43d2-9f04-ba0773776285)
 
 → The users tend to walk more on Tuesday and Saturday compared to the other days of the week.
 
 → Based on the very active minutes category, the users are more active on Monday and Tuesday.
 
-![Distribution very active min](https://github.com/user-attachments/assets/662463b7-c510-4e94-8081-581513913e42)
+
+![Distribution very active min](https://github.com/user-attachments/assets/939a112a-7629-497b-b411-206541e8b32c)
 
 → The majority of users have very few “Very Active Minutes” per day, with a large number clustered around the lower end of the spectrum (0-10 minutes).
 
 → This suggests that a significant portion of users are not engaging in high levels of high-intensity activity regularly.
 
-![Daily avg  min categories - Day of week](https://github.com/user-attachments/assets/07e6cf19-bcef-4a3b-9dc4-7f23953d9c91)
 
-![Daily avg  min categories](https://github.com/user-attachments/assets/c5871163-ea3a-45f7-a3fd-2ca7aca79e33)
+![Daily avg  min categories - Day of week](https://github.com/user-attachments/assets/f908276b-ef4b-452f-a740-1a6262b43520)
+
+
+<img width="1119" alt="image" src="https://github.com/user-attachments/assets/5c1eea09-9ce7-4cb1-aeb6-8198e2b5e0bc">
 
 → This graph indicates again that the majority of the users are often not active. The average sedentary minutes are the highest among the other categories. This might suggest that some users have higher amount of sedentary behaviours, which are defined as time spent sitting or lying with low energy expenditure, while awake, in the context of occupational, educational, home,... (Source: [WHO](https://iris.who.int/bitstream/handle/10665/336656/9789240015128-eng.pdf?sequence=1))
 
-![Total intensity   total calories](https://github.com/user-attachments/assets/802b8b9c-c164-434c-aa83-b8baada56d4b)
+
+
+![Total intensity   total calories](https://github.com/user-attachments/assets/c194be44-e055-4321-9ef4-a90d0d0ff6d8)
 
 → On Monday, Tuesday and Wednesday, the users tend to have higher intensity level in the morning and in the afternoon. The calories burned at these times are also respectively higher compared to the other days of the week.
 
-![Corr_total steps_calories burned](https://github.com/user-attachments/assets/027ff965-395d-4743-97c4-6f28771c7706)
 
-The correlation value is 0.59.
+![Correlation calories vs total steps - very active min - min asleep](https://github.com/user-attachments/assets/e8463c11-3f24-49af-b0f8-e16874071b2a)
 
-→ There’s moderate positive correlation between total steps and calories burned.
+<img width="1199" alt="image" src="https://github.com/user-attachments/assets/01cb3400-9734-4ead-91fc-ab1d8e0a7964">
+
+→ There’s moderate positive correlation between calories burned and total steps as well as calories burned and very active minutes.
+
+→ There’s essentially no linear relationship between calories burned and total minutes asleep.
 
 → However, some data points are at 0 or near 0 on the x-axis (total steps), yet they are higher on the y-axis (calories). This could happen for some reasons:
 - Basal Metabolic Rate (BMR): Caloric Burn Without Activity, even if someone does not take any steps during the day, they still burn calories due to their basal metabolic rate (BMR).
@@ -147,32 +155,9 @@ The correlation value is 0.59.
 - Tracking Errors: There might be discrepancies in how the device recorded steps versus calories. This can happen due to issues like syncing problems, the device being worn improperly, or other technical errors.
 - Missing Data: If steps weren’t recorded accurately (e.g., the device wasn’t worn during walking but was during sedentary periods), it could result in zero steps being recorded but still show calories burned.
 
-![Corr_active minutes_calories burned](https://github.com/user-attachments/assets/3b378496-28c6-4522-85ae-fb8abf665cec)
-
-The correlation value is 0.62.
-
-→ There’s moderate positive correlation between very active minutes and calories burned.
-
-→ In this graph, there’re even more data points at 0 or near 0 on the x-axis (very active minutes), yet these data points are higher on the y-axis (calories burned). Some of the reasons could be:
-- Some users have higher Basal Metabolic Rate
-- Some users had additional activities not captured as “Very active minutes”. For example, yoga, stretching, strength training might not be recorded for very active minutes category.
-- Tracking errors or missing data.
-
-![Corr_minutes asleep_calories burned](https://github.com/user-attachments/assets/cef357e2-f4e5-491f-a2a9-a25e2d701712)
-
-The correlation value is -0.03.
-
-→ There’s essentially no linear relationship between total minutes asleep and calories burned.
-
-![Corr_minutes asleep_total steps](https://github.com/user-attachments/assets/1d5f94ce-4f44-481e-9504-b100c80368d5)
-
-The correlation value is -0.19
-
 **3. Analysis on how people sleep**
 
-![Avg  total asleep](https://github.com/user-attachments/assets/587e1e85-5c83-4338-8641-e6b4387ac86c)
-
-![Avg  total awake](https://github.com/user-attachments/assets/788f2092-9b47-45b0-bbaa-9e09b5ba818f)
+![Avg  total min asleep   awake weekly](https://github.com/user-attachments/assets/b0781634-adbe-4b42-9d2f-e4687d54860e)
 
 → The average time asleep of the users is higher on Sunday and Wednesday compared to the other days.
 
@@ -187,17 +172,19 @@ Dataset: hourlyIntensities_merged
 - Identify Patterns: Look for patterns that might suggest user behaviors, such as peak activity times or consistent days of low activity.
 - Behavioral Segmentation: Group users based on their activity patterns
 
-![Intensity_level](https://github.com/user-attachments/assets/1ed6bce4-8fd5-48e8-9265-8b8eaf8012d9)
+<img width="633" alt="image" src="https://github.com/user-attachments/assets/32de5eb5-03a9-4a8d-aa81-2547593ef12b">
 
 → The total intensity level among the users is highest on Tuesday, follows by Wednesday.
 
-![Intensity_day](https://github.com/user-attachments/assets/0ae4b04e-1512-42bd-981b-e6113a117457)
+
+![Intensity level_time of day_day of week](https://github.com/user-attachments/assets/7cb51c23-2491-4e74-a078-8d89befa2553)
 
 → Users are more active either in the morning or in the afternoon.
 
 → Users are mostly active on Tuesday and Wednesday afternoon.
 
-![Intensity_decile](https://github.com/user-attachments/assets/fc6ef068-5c32-406b-bff3-b85c88777f9f)
+
+<img width="455" alt="image" src="https://github.com/user-attachments/assets/71738280-5eae-4b49-ac8d-5f9cc172b5c2">
 
 → The first decile represents the lower bound of intensity, showing where 10% of the data points fall. The total intensity at the first decile tends to be lower on Monday compared to the others.
 
@@ -205,22 +192,14 @@ Dataset: hourlyIntensities_merged
 
 → This pattern might suggest that users are less active on weekends, or their activity intensity is more moderate.
 
-**Actionable recommendations for marketing strategy:**
-- Promote Bellabeat membership feature: provide fully personalized guidance on suitable nutrition on active days and rest days.
-- Push notifications of Bellabeat app should align with peak activity time and resting time. → For example, diet suggestions in the morning before and after workout. Mindfulness reminder on rest day.
-
 **5. Analysis based on achievement groups**
 
 Create total active and fairly active minutes weekly summary for each user and extract all weeks that have active minutes from 150 and above.
 
-The result from SQL query shows 154 records of weekly active minutes of each user through the entire analysis period, of which:
-- 46% of the observations have below 150 active minutes per week. This is below the recommendation of WHO: 150 – 300 minutes of moderate intensity activity per week for good health and wellbeing.
-- 29% of the observations have between 150 to 300 active minutes per week.
-- 25% of the observations have more than 300 active minutes per week.
+The result from SQL query shows 154 records of weekly active minutes of each user through the entire analysis period. Based on this result, the users are then divided into 3 groups:
 
-![Group](https://github.com/user-attachments/assets/e815da1e-720a-44c9-9183-d744af2fda7d)
+<img width="1251" alt="image" src="https://github.com/user-attachments/assets/f494f9e2-6066-4961-8cb5-a7fa47f0f3fa">
 
-**Results:**
 - Group A: high weekly achievement rate
   42.4% of all users are in this group (14 of 33) got 80 – 100% of weeks of active minutes ≥ 150.
 - Group B: weekly regular achievement rate
@@ -243,20 +222,24 @@ I also created a Tableau dashboard of all the visualizations of this project in 
 The important findings from the analysis of smart device fitness data:
 - 7638 average total steps of all users are below the recommended daily total steps of 10,000 (source: National Institute of Health)
 - The average sedentary active minutes (time spent while sitting or lying down) is highest among the other categories (991 minutes).
-- One of the most important metrics of the analysis are the active minutes, including very active minutes and fairly activeminutes. → Nearly 50% of the users have less than 60% of the weeks where they achieved more than 150 minutes active minutes.
+- One of the most important metrics of the analysis are the active minutes, including very active minutes and fairly activeminutes. → Nearly half of the users have less than 60% of the weeks where they achieved more than 150 minutes active minutes.
 → Together with the findings about average total steps and average sedentary minutes, I would conclude that most of the users are not active.
 - Generally, the users tend to be more active on Monday, Tuesday and Wednesday compared to the other days of the week. The most active time of the day are in the morning and in the afternoon.
-- The users seem to sleep more on weekend, but they also spend more time awake on bed. This could indicate that the quality of sleep is not very good.
+- The users seem to sleep more on weekend, but they also spend more time awake on bed. This could indicate that the quality of sleep is not very good or they spend more time on their phone on weekends.
 
-**Recommendations for marketing strategy to be summarized**
+**Recommendations for marketing strategy**
 
-**Actionable recommendations for marketing strategy:** (from Summary Statistics)
-- Targeting Less Active Users: Marketing strategies could be developed to target the majority of users who are less active, encouraging them to increase their daily “Very Active Minutes.”
-- Engagement Programs: Creating challenges or programs aimed at increasing users’ very active minutes might help shift the median upwards, improving overall user fitness.
-- Personalized Recommendations: For users on the lower end of the activity scale, personalized recommendations could help them gradually increase their very active minutes, potentially improving their health outcomes.
-**Actionable recommendations for marketing strategy:** (from total intensity & total calories)
-- Targeting Sedentary Users: Since most users have low very active minutes, a marketing strategy could focus on encouraging moderate increases in activity levels, such as setting achievable fitness goals.
+- Targeting less active users (users in group C with low weekly achievement rate) to increase their engagement with Bellabeat app: Develop marketing strategy to target the majority of users who are less active, encouraging them to increase their daily “Very Active Minutes” by implementing the followings:
+  - Highlight benefits: Offering free seminar on fitness topic like ...
+  - Engagement programs: Creating challenges based on users fitness data. The challenges could be "Complete a 5K run per week", "Reach 150 active minutes per week".
+  - Personalized goal setting & training plan: The goal setting could be done by providing the users with some insights from their fitness data (steps, heart rate, activity level) in the last 3 months. Based on these insights, help the users to set suitable weekly goals like weight loss, muscle gain, 5K run, etc. and slowly increased their active level. → This could be combined with Bellabeat membership by offering users one month trial. The users will receive a one-time personalized goal and training plan based on their fitness data to test.
+  - Incentive programms: Offering tangible rewards like discounts, cashback, gifts to users who meet their activity goals over a period of time. For example, users can receive discount codes on other Bellabeat products or Bellabeat membership when they achieve 10,000 total daily steps 5 times per week in a month.
+
+→ These initiatives do not only motivate and support the users to be more physically active, they also increase users' engagement with Bellabeat app, at the same time promoting for other Bellabeat products and membership.
+
 - Highlight Benefits: Educational content on the health benefits of even small increases in very active minutes could be emphasized to motivate users to be more active.
+- Promote Bellabeat membership feature: provide fully personalized guidance on suitable nutrition on active days and rest days.
+- Push notifications of Bellabeat app should align with peak activity time and resting time. → For example, diet suggestions in the morning before and after workout. Mindfulness reminder on rest day.
 
 
 
