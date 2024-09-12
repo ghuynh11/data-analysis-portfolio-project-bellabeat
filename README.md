@@ -230,17 +230,26 @@ The important findings from the analysis of smart device fitness data:
 **Recommendations for marketing strategy**
 
 - Targeting less active users (users in group C with low weekly achievement rate) to increase their engagement with Bellabeat app: Develop marketing strategy to target the majority of users who are less active, encouraging them to increase their daily “Very Active Minutes” by implementing the followings:
-  - Highlight benefits: Offering free seminar on fitness topic like ...
+  - Highlight benefits: Offering free seminars on fitness topic like simple training plans for beginners to create sporty habits, quick and easy diet plans on workout days and rest days.
   - Engagement programs: Creating challenges based on users fitness data. The challenges could be "Complete a 5K run per week", "Reach 150 active minutes per week".
   - Personalized goal setting & training plan: The goal setting could be done by providing the users with some insights from their fitness data (steps, heart rate, activity level) in the last 3 months. Based on these insights, help the users to set suitable weekly goals like weight loss, muscle gain, 5K run, etc. and slowly increased their active level. → This could be combined with Bellabeat membership by offering users one month trial. The users will receive a one-time personalized goal and training plan based on their fitness data to test.
   - Incentive programms: Offering tangible rewards like discounts, cashback, gifts to users who meet their activity goals over a period of time. For example, users can receive discount codes on other Bellabeat products or Bellabeat membership when they achieve 10,000 total daily steps 5 times per week in a month.
 
 → These initiatives do not only motivate and support the users to be more physically active, they also increase users' engagement with Bellabeat app, at the same time promoting for other Bellabeat products and membership.
 
-- Highlight Benefits: Educational content on the health benefits of even small increases in very active minutes could be emphasized to motivate users to be more active.
-- Promote Bellabeat membership feature: provide fully personalized guidance on suitable nutrition on active days and rest days.
-- Push notifications of Bellabeat app should align with peak activity time and resting time. → For example, diet suggestions in the morning before and after workout. Mindfulness reminder on rest day.
+- Implement relevant push notifications of Bellabeat app which align with peak activity time and resting time:
+  - Combining Bellabeat membership to show diet suggestions in the morning and in the afternoon before and after workout. According to the data, morning and afternoon are when the users being mostly active. By sending relevant push notifications at the right moment, we could increase users's engagement with Bellabeat app and membership.
+  - Targeting users who have longer awake time in bed according to the data: sending notifications showing recommendations on helpful tips about sleeps, like ways to have a good sleep, 5 minutes meditation guide before sleep.
 
+- Promoting Bellabeat membership features by highlighting personalized content which is personalized based on users' activity and sleep data:
+  - For users in group A and B who are more active, one way to keep their high active level and engagement with Bellabeat app and products is to send reminders to take part in weekly, monthly challenges; reminders to set their personal workout goals; or reminders to share their achievements with others on social media platforms.
+  - For users in group C who are less active, I mentioned the recommended activities above. Another suggestion would be to offer monthly online 1:1 consultation with a professional trainer as a valuable feature of Bellabeat membership. By giving the users the reliable support based on their personal need, Bellabeat could keep or increase their users' engagement to their products and services.
+
+Finally, based on these recommendations, a clear implementation plan should be mapped out together with defining some KPIs for this plan. The KPIs could be:
+- Users' engagement by considering the number of workout recorded, workout duration, number of seminars participated, etc.
+- Changes in the users' minutes categories. A positive result would be the increase of the very active minutes compared to previous users' data.
+- Number of new sign-ups for Bellabeat memberships
+- Sales of other Bellabeat products
 
 
 
