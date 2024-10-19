@@ -228,12 +228,12 @@ I also created a Tableau dashboard of some important visualizations of this proj
 
 - **Low physical activity:** 7,638 average total steps of all users are below the recommended daily total steps of 10,000 (source: National Institute of Health)
 
-- **Sedentary Behavior:** The average sedentary active minutes (time spent while sitting or lying down) is highest among the other categories (991 minutes).
+- **Sedentary behavior:** The average sedentary active minutes (time spent while sitting or lying down) is highest among the other categories (991 minutes).
 
-- **Very Active Minutes:** One of the most important metrics of the analysis are the active minutes, including very active minutes and fairly active minutes. Nearly half of the users have less than 60% of the weeks where they achieved more than 150 minutes active minutes.
+- **Very active minutes:** One of the most important metrics of the analysis are the active minutes, including very active minutes and fairly active minutes. Nearly half of the users have less than 60% of the weeks where they achieved more than 150 minutes active minutes.
 → Together with the findings about average total steps and average sedentary minutes, I would conclude that most of the users are not active.
 
-- **Peak Activity Times:** Generally, the users tend to be more active on Monday, Tuesday and Wednesday compared to the other days of the week. The most active time of the day are in the morning and in the afternoon.
+- **Peak activity times:** Generally, the users tend to be more active on Monday, Tuesday and Wednesday compared to the other days of the week. The most active time of the day are in the morning and in the afternoon.
 
 - **Time spent in bed**: The users seem to sleep more on weekend, but they also spend more time awake on bed. This could indicate that the quality of sleep is not very good or they spend more time on their phone on weekends.
 
