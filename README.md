@@ -5,17 +5,23 @@
 Founded in 2014, [Bellabeat](https://bellabeat.com/) is the company that developed one of the first wearables specifically designed for women and has since gone on to create a portfolio of digital products for tracking and improving the health of women.
 
 ## Scenario
-I am a junior data analyst working on the marketing analyst team at Bellabeat. Bellabeat is a successful small company, but they have the potential to become a larger player in the global smart device market. Urška Sršen, cofounder and Chief Creative Officer of Bellabeat, believes that analyzing smart device fitness data could help unlock new growth opportunities for the company. 
+Bellabeat is a successful small company, but they have the potential to become a larger player in the global smart device market. Urška Sršen, cofounder and Chief Creative Officer of Bellabeat, believes that analyzing smart device fitness data could help unlock new growth opportunities for the company. 
 
-I have been asked to focus on one of Bellabeat’s products and analyze smart device data to gain insight into how consumers are using their smart devices. The insights I discover will then help guide marketing strategy for the company. I will present my analysis to the Bellabeat executive team along with your high-level recommendations for Bellabeat’s marketing strategy.
+The requirement is to focus on one of Bellabeat’s products and **analyze smart device data to gain insight into how consumers are using their smart devices**. The insights discovered will then be used to **guide marketing strategy** for the company. And the analysis should be presented to  Bellabeat executive team along with some high-level recommendations for Bellabeat’s marketing strategy.
 
-I follow the methodology with the steps below for this project:
-1. Ask: Define the business problem or objective by understanding the key questions that need to be answered and identifying stakeholders’ needs.
-2. Prepare: Gather and evaluate the relevant data, ensuring it’s accessible, complete, and appropriate for the analysis by cleaning and organizing the datasets.
-3. Process: Clean and transform the raw data, checking for errors, inconsistencies, or missing values to ensure that it is reliable and ready for analysis.
-4. Analyse: Apply analytical techniques to explore the data, identify patterns, trends, and relationships, and extract actionable insights relevant to the business problem.
-5. Share: Present findings through reports, visualizations, or dashboards in a clear, understandable and engaging way to communicate key insights to stakeholders.
-6. Act: Use the insights gained to inform decision-making, implement solutions, or recommend strategies that address the original business question or problem.
+The following methodology with 6 steps are implemented for this project:
+
+**1. Ask:** Define the business problem or objective by understanding the key questions that need to be answered and identifying stakeholders’ needs.
+
+**2. Prepare:** Gather and evaluate the relevant data, ensuring it’s accessible, complete, and appropriate for the analysis by cleaning and organizing the datasets.
+
+**3. Process:** Clean and transform the raw data, checking for errors, inconsistencies, or missing values to ensure that it is reliable and ready for analysis.
+
+**4. Analyse:** Apply analytical techniques to explore the data, identify patterns, trends, and relationships, and extract actionable insights relevant to the business problem.
+
+**5. Share:** Present findings through reports, visualizations, or dashboards in a clear, understandable and engaging way to communicate key insights to stakeholders.
+
+**6. Act:** Use the insights gained to inform decision-making, implement solutions, or recommend strategies that address the original business question or problem.
 
 ## STEP 1: Ask
 **Topic:** Smart device health data
@@ -73,7 +79,6 @@ As there’re no information about the goals of marketing strategy for the Bella
 - dailyIntensities_merged
 - dailySteps_merged
 - sleepDay_merged
-- weightLogInfo_merged
 - hourlyCalories_merged
 - hourlyIntensities_merged
 - hourlySteps_merged
