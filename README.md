@@ -237,7 +237,9 @@ I also created a Tableau dashboard of some important visualizations of this proj
 
 - **Time spent in bed**: The users seem to sleep more on weekend, but they also spend more time awake on bed. This could indicate that the quality of sleep is not very good or they spend more time on their phone on weekends.
 
-**2. How could these trends help influence Bellabeat marketing strategy??**
+→ The trends above represent **behavior patterns** that smart devices are capable of capturing. Bellabeat can use this information to build features, develop marketing strategies, and engage users in ways that align with their existing habits and fitness levels, while also encouraging more active and healthier behaviors.
+
+**2. How could these trends help influence Bellabeat marketing strategy?**
 
 - **Personalized campaigns**: Targeting less active users (users in group C with low weekly achievement rate) to increase their engagement with Bellabeat app: Develop marketing strategy to target the majority of users who are less active, encouraging them to increase their daily “Very Active Minutes” by implementing the followings:
   - Highlight benefits: Offering free seminars on fitness topic like simple training plans for beginners to create sporty habits, quick and easy diet plans on workout days and rest days.
@@ -247,7 +249,7 @@ I also created a Tableau dashboard of some important visualizations of this proj
 
 → These initiatives do not only motivate and support the users to be more physically active, they also increase users' engagement with Bellabeat app, at the same time promoting for other Bellabeat products and membership.
 
-- **Push notifications**: Implement relevant push notifications of Bellabeat app which align with peak activity time and resting time:
+- **Push notifications to promote time-based engagement**: Implement relevant push notifications of Bellabeat app which align with peak activity time and resting time:
   - Combining Bellabeat membership to show diet suggestions in the morning and in the afternoon before and after workout. According to the data, morning and afternoon are when the users are mostly active. By sending relevant push notifications at the right moment, we could increase users's engagement with Bellabeat app and membership.
   - Targeting users who have longer time staying awake in bed according to the data: sending notifications showing recommendations on helpful tips about sleeps, like ways to have a good sleep, 5 minutes meditation guide before sleep.
 
