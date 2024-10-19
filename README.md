@@ -28,7 +28,7 @@ The following methodology with 6 steps are implemented for this project:
 
 **Business task:**
 - Analyse smart device fitness data to unlock new growth opportunities for the company
-- Gain insights into how consumers are using non-Bellabeat smart devices → Then select one Bellabeat product to apply these insights
+- Gain insights into consumers' usage of non-Bellabeat smart devices → Then select one Bellabeat product to apply these insights
 - Find out how these insights can contribute to building marketing strategy for the company
 
 → Analyse smart device fitness data to gain insights into how consumers are using their smart devices to keep track and improve their health. Use the insights found to build marketing strategy for the company.
@@ -57,7 +57,7 @@ As there’re no information about the goals of marketing strategy for the Bella
 - Reliable: not really (more details in the description below)
 - Original: yes
 - Comprehensive: yes
-- Current: The data is updated 4 months ago (02.2024). But the original data dated back to 2016 which is not actual considering the current year.
+- Current: The data is updated 4 months ago (02.2024). But the original data dated back to 2016, which is not actual considering the current year.
 - Cited: This dataset is created based on the respondents to a distributed survey via Amazon Mechanical Turk between 03.12.2016-05.12.2016. Thirty eligible Fitbit users consented to the submission of personal tracker data to this dataset.
 
 **License:** CC0 public domain → No copyright: copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.
@@ -89,8 +89,8 @@ As there’re no information about the goals of marketing strategy for the Bella
 - Sorted and filtered the data
 - Checked for blank values
 - Set values to the correct format and rounded numbers
-- Formated the date and time column in “hourlyCalories_merged”, “hourlySteps_merged”, “minuteSleep_merged”, “sleepDay_merged” and “weightLogInfo_merged” datasets using SPLIT() function. The data in the column which is not in the correct format is deleted.
-- In the “minuteSleep_merged” and “sleepDay_mearged’ datasets, there are only 24 unique IDs instead of 33 like in the other datasets.
+- Formatted the date and time column in “hourlyCalories_merged”, “hourlySteps_merged”, “minuteSleep_merged”, “sleepDay_merged” and “weightLogInfo_merged” datasets using SPLIT() function. The data in the column which is not in the correct format is deleted.
+- In the “minuteSleep_merged” and “sleepDay_merged’ datasets, there are only 24 unique IDs instead of 33 like in the other datasets.
 - In the “weightLogInfo_merged” dataset, there are only 8 unique IDs instead of 33.
 
 **The datasets are uploaded into SQL BigQuery for further data cleaning and manipulation:**
@@ -137,7 +137,7 @@ Very active, fairly active, lightly active and sedentary active minutes:
 
 <img width="1119" alt="image" src="https://github.com/user-attachments/assets/5c1eea09-9ce7-4cb1-aeb6-8198e2b5e0bc">
 
-→ This graph indicates again that the majority of the users are often not active. The average sedentary minutes are the highest among the other categories. This might suggest that some users have higher amount of sedentary behaviours, which are defined as time spent sitting or lying with low energy expenditure, while awake, in the context of occupational, educational, home,... (Source: [WHO](https://iris.who.int/bitstream/handle/10665/336656/9789240015128-eng.pdf?sequence=1))
+→ This graph indicates again that the majority of the users are often not active. The average sedentary minutes are the highest among the other categories. This might suggest that some users exhibit higher level of sedentary behaviours, which are defined as time spent sitting or lying with low energy expenditure, while awake, in the context of occupational, educational, home,... (Source: [WHO](https://iris.who.int/bitstream/handle/10665/336656/9789240015128-eng.pdf?sequence=1))
 
 
 
@@ -224,31 +224,36 @@ I also created a Tableau dashboard of some important visualizations of this proj
 
 ## STEP 6: Act
 
-The important findings from the analysis of smart device fitness data:
-- 7638 average total steps of all users are below the recommended daily total steps of 10,000 (source: National Institute of Health)
-- The average sedentary active minutes (time spent while sitting or lying down) is highest among the other categories (991 minutes).
-- One of the most important metrics of the analysis are the active minutes, including very active minutes and fairly activeminutes. → Nearly half of the users have less than 60% of the weeks where they achieved more than 150 minutes active minutes.
+**1. What are some trends in smart device usage?**
+
+- **Low physical activity:** 7,638 average total steps of all users are below the recommended daily total steps of 10,000 (source: National Institute of Health)
+
+- **Sedentary Behavior:** The average sedentary active minutes (time spent while sitting or lying down) is highest among the other categories (991 minutes).
+
+- **Very Active Minutes:** One of the most important metrics of the analysis are the active minutes, including very active minutes and fairly active minutes. Nearly half of the users have less than 60% of the weeks where they achieved more than 150 minutes active minutes.
 → Together with the findings about average total steps and average sedentary minutes, I would conclude that most of the users are not active.
-- Generally, the users tend to be more active on Monday, Tuesday and Wednesday compared to the other days of the week. The most active time of the day are in the morning and in the afternoon.
-- The users seem to sleep more on weekend, but they also spend more time awake on bed. This could indicate that the quality of sleep is not very good or they spend more time on their phone on weekends.
 
-**Recommendations for marketing strategy**
+- **Peak Activity Times:** Generally, the users tend to be more active on Monday, Tuesday and Wednesday compared to the other days of the week. The most active time of the day are in the morning and in the afternoon.
 
-- Targeting less active users (users in group C with low weekly achievement rate) to increase their engagement with Bellabeat app: Develop marketing strategy to target the majority of users who are less active, encouraging them to increase their daily “Very Active Minutes” by implementing the followings:
+- **Time spent in bed**: The users seem to sleep more on weekend, but they also spend more time awake on bed. This could indicate that the quality of sleep is not very good or they spend more time on their phone on weekends.
+
+**2. How could these trends help influence Bellabeat marketing strategy??**
+
+- **Personalized campaigns**: Targeting less active users (users in group C with low weekly achievement rate) to increase their engagement with Bellabeat app: Develop marketing strategy to target the majority of users who are less active, encouraging them to increase their daily “Very Active Minutes” by implementing the followings:
   - Highlight benefits: Offering free seminars on fitness topic like simple training plans for beginners to create sporty habits, quick and easy diet plans on workout days and rest days.
   - Engagement programs: Creating challenges based on users fitness data. The challenges could be "Complete a 5K run per week", "Reach 150 active minutes per week".
   - Personalized goal setting & training plan: The goal setting could be done by providing the users with some insights from their fitness data (steps, heart rate, activity level) in the last 3 months. Based on these insights, help the users to set suitable weekly goals like weight loss, muscle gain, 5K run, etc. and slowly increased their active level. → This could be combined with Bellabeat membership by offering users one month trial. The users will receive a one-time personalized goal and training plan based on their fitness data to test.
-  - Incentive programms: Offering tangible rewards like discounts, cashback, gifts to users who meet their activity goals over a period of time. For example, users can receive discount codes on other Bellabeat products or Bellabeat membership when they achieve 10,000 total daily steps 5 times per week in a month.
+  - Incentive programs: Offering tangible rewards like discounts, cashback, gifts to users who meet their activity goals over a period of time. For example, users can receive discount codes on other Bellabeat products or Bellabeat membership when they achieve 10,000 total daily steps 5 times per week in a month.
 
 → These initiatives do not only motivate and support the users to be more physically active, they also increase users' engagement with Bellabeat app, at the same time promoting for other Bellabeat products and membership.
 
-- Implement relevant push notifications of Bellabeat app which align with peak activity time and resting time:
-  - Combining Bellabeat membership to show diet suggestions in the morning and in the afternoon before and after workout. According to the data, morning and afternoon are when the users being mostly active. By sending relevant push notifications at the right moment, we could increase users's engagement with Bellabeat app and membership.
-  - Targeting users who have longer awake time in bed according to the data: sending notifications showing recommendations on helpful tips about sleeps, like ways to have a good sleep, 5 minutes meditation guide before sleep.
+- **Push notifications**: Implement relevant push notifications of Bellabeat app which align with peak activity time and resting time:
+  - Combining Bellabeat membership to show diet suggestions in the morning and in the afternoon before and after workout. According to the data, morning and afternoon are when the users are mostly active. By sending relevant push notifications at the right moment, we could increase users's engagement with Bellabeat app and membership.
+  - Targeting users who have longer time staying awake in bed according to the data: sending notifications showing recommendations on helpful tips about sleeps, like ways to have a good sleep, 5 minutes meditation guide before sleep.
 
-- Promoting Bellabeat membership features by highlighting personalized content which is personalized based on users' activity and sleep data:
+- **Promote Bellabeat fitness and wellness features**: Highlight personalized content which is personalized based on users' activity and sleep data:
   - For users in group A and B who are more active, one way to keep their high active level and engagement with Bellabeat app and products is to send reminders to take part in weekly, monthly challenges; reminders to set their personal workout goals; or reminders to share their achievements with others on social media platforms.
-  - For users in group C who are less active, I mentioned the recommended activities above. Another suggestion would be to offer monthly online 1:1 consultation with a professional trainer as a valuable feature of Bellabeat membership. By giving the users the reliable support based on their personal need, Bellabeat could keep or increase their users' engagement to their products and services.
+  - For users in group C who are less active, I mentioned the recommended activities above. Another suggestion would be to offer monthly online one-on-one consultation with a professional trainer as a valuable feature of Bellabeat membership. By giving the users the reliable support based on their personal need, Bellabeat could keep or increase their users' engagement to their products and services.
 
 Finally, based on these recommendations, a clear implementation plan should be mapped out together with defining some KPIs for this plan. The KPIs could be:
 - Users' engagement by considering the number of workout recorded, workout duration, number of seminars participated, etc.
@@ -256,14 +261,4 @@ Finally, based on these recommendations, a clear implementation plan should be m
 - Number of new sign-ups for Bellabeat memberships
 - Sales of other Bellabeat products
 
-
-
-
-
-
-
- 
-
-
-
- 
+***PS:** Special thanks to Namratha Pmd for her insightful article [“Bellabeat Case Study with SQL and Tableau”](https://namrathapmd.medium.com/bellabeat-case-study-with-sql-and-tableau-836795fea30b). Her analysis provided valuable inspiration and guidance throughout my work on this project.*
