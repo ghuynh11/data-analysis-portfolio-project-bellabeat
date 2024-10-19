@@ -9,13 +9,13 @@ I am a junior data analyst working on the marketing analyst team at Bellabeat. B
 
 I have been asked to focus on one of Bellabeat’s products and analyze smart device data to gain insight into how consumers are using their smart devices. The insights I discover will then help guide marketing strategy for the company. I will present my analysis to the Bellabeat executive team along with your high-level recommendations for Bellabeat’s marketing strategy.
 
-I follow the steps below for this project:
-- Ask
-- Prepare
-- Process
-- Analyse
-- Share
-- Act
+I follow the methodology with the steps below for this project:
+1. Ask: Define the business problem or objective by understanding the key questions that need to be answered and identifying stakeholders’ needs.
+2. Prepare: Gather and evaluate the relevant data, ensuring it’s accessible, complete, and appropriate for the analysis by cleaning and organizing the datasets.
+3. Process: Clean and transform the raw data, checking for errors, inconsistencies, or missing values to ensure that it is reliable and ready for analysis.
+4. Analyse: Apply analytical techniques to explore the data, identify patterns, trends, and relationships, and extract actionable insights relevant to the business problem.
+5. Share: Present findings through reports, visualizations, or dashboards in a clear, understandable and engaging way to communicate key insights to stakeholders.
+6. Act: Use the insights gained to inform decision-making, implement solutions, or recommend strategies that address the original business question or problem.
 
 ## STEP 1: Ask
 **Topic:** Smart device health data
@@ -215,7 +215,7 @@ The insights and findings of the analysis are shared in this step through data v
 
 For this project, it would be better to share the visualizations together with their respective queries and tables.
 
-I also created a Tableau dashboard of all the visualizations of this project in this link. **(Dashboard to be finalized)**
+I also created a Tableau dashboard of some important visualizations of this project in this [LINK](https://public.tableau.com/views/BellabeatCaseStudy_17224486675350/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link).
 
 ## STEP 6: Act
 
